@@ -37,8 +37,15 @@ public class Main {
             System.out.println("8. Exit");
             System.out.print("Enter your choice: ");
 
-            choice = sc.nextInt();
-            sc.nextLine(); // Consume the remaining newline
+            if (sc.hasNextInt()) {
+                choice = sc.nextInt();
+                sc.nextLine();
+            } else {
+                System.out.println("Invalid choice. Please enter a number.");
+                sc.nextLine();
+                choice = 0;
+                continue;
+}
 
             // Execute the operation selected by the user
             switch (choice) {
@@ -50,8 +57,15 @@ public class Main {
                     String name = sc.nextLine();
 
                     System.out.print("Enter food weight: ");
+
+                    if (!sc.hasNextDouble()) {
+                        System.out.println("Invalid weight. Numbers only.");
+                        sc.nextLine();
+                        break;
+                    }
+
                     double weight = sc.nextDouble();
-                    sc.nextLine(); // Consume the remaining newline
+                    sc.nextLine();
 
                     System.out.print("Enter best-before date (YYYY-MM-DD): ");
                     String bestBefore = sc.nextLine();
@@ -86,7 +100,7 @@ public class Main {
                     storage.enqueue(food);
                     break;
 
-
+                    
                 case 2:
                       FoodItem removedFood = storage.dequeue();
 
