@@ -9,6 +9,8 @@
  */
     
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Main {
 
@@ -51,11 +53,30 @@ public class Main {
                     double weight = sc.nextDouble();
                     sc.nextLine(); // Consume the remaining newline
 
-                    System.out.print("Enter best-before date: ");
+                    System.out.print("Enter best-before date (YYYY-MM-DD): ");
                     String bestBefore = sc.nextLine();
 
-                    System.out.print("Enter storage time: ");
-                    String storedAt = sc.nextLine();
+                    try {
+                        LocalDate expiryDate = LocalDate.parse(bestBefore);
+                        LocalDate today = LocalDate.now();
+                        LocalDate maxDate = today.plusWeeks(2);
+
+                        if (expiryDate.isBefore(today)) {
+                            System.out.println("Best-before date cannot be in the past.");
+                            break;
+                        }
+
+                        if (expiryDate.isAfter(maxDate)) {
+                            System.out.println("Best-before date cannot be more than two weeks from today.");
+                            break;
+                        }
+
+                    } catch (java.time.format.DateTimeParseException e) {
+                        System.out.println("Invalid date. Use YYYY-MM-DD.");
+                        break;
+                    }
+
+                    String storedAt = LocalDateTime.now().toString();
 
                     // Create a new food item
                     FoodItem food = new FoodItem(
