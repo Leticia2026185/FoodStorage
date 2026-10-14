@@ -1,6 +1,4 @@
 package foodstorage;
-
-
 // CIRCULAR QUEUE (FIFO)
 // add at REAR, remove from FRONT
 // first food in = first food out
