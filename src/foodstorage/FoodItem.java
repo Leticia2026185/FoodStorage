@@ -1,12 +1,13 @@
+package foodstorage;
 
 public class FoodItem {
 
+    //details of one food item
     private String name;
     private double weight;
     private String bestBefore;
     private String storedAt;
 
-    // Constructor: creates a food item with its details
     public FoodItem(String name, double weight, String bestBefore, String storedAt) {
         this.name = name;
         this.weight = weight;
@@ -14,12 +15,12 @@ public class FoodItem {
         this.storedAt = storedAt;
     }
 
-    // Returns the name of the food item
+    //used by search
     public String getName() {
         return name;
     }
-    
-    // Returns the food item's details as readable text
+
+    //used to print the item
     @Override
     public String toString() {
         return "Name: " + name
@@ -27,5 +28,4 @@ public class FoodItem {
                 + ", Best Before: " + bestBefore
                 + ", Stored At: " + storedAt;
     }
-
 }
